@@ -31,11 +31,11 @@ def create_connacts():
     return jsonify({"message": "User created!"}), 201
 
 # Update method
-@app.route("/update_contact/<int:user_ud>", methods = ["PATCH"])
+@app.route("/update_contact/<int:user_id>", methods=["PATCH"])
 def update_contact(user_id):
     contact = Contact.query.get(user_id)
     if not contact:
-        return jsonify({"message": "User not found"}),404
+        return jsonify({"message": "User not found"}), 404
     
     data = request.json
     contact.first_name = data.get("firstName", contact.first_name)
@@ -48,7 +48,7 @@ def update_contact(user_id):
 
 
 # Delet method
-@app.route("/delete_contacts<int:user_id>", methods = ["DELETE"])
+@app.route("/delete_contacts/<int:user_id>", methods = ["DELETE"])
 def delete_contact(user_id):
     contact = Contact.query.get(user_id)
     if not contact:
